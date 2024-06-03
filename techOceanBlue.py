@@ -30,10 +30,11 @@ def findResidues(oceanResiduesList, selectedOceanIndex):
     print(f"Foram encontrados os seguintes resíduos:")
     for i in range(len(oceanResiduesList)): # Laço para mostrar os resíduos encontrados
         print(f"{i + 1} - {oceanResiduesList[i]}")
-    print(f"E a seguinte quantidade de lixo: {oceansTrashsFounded[selectedOceanIndex]}")
+    print(f"E a seguinte quantidade de lixos: {oceansTrashsFounded[selectedOceanIndex]}")
 
 # Função para gerar uma lista de índices aleatórios
-def generateRandomIndexes(elements, quantity):
+def generateRandomIndexes(elements):
+    quantity = random.randint(1, 15) # Gera um número aleatório de 1 a 25 para simular a quantidade de resíduos encontrados
     randomIndexes = random.choices(elements, k=quantity) # Utilização da biblioteca random para gerar índices aleatórios com base na lista de resíduos que podem ser encontrados
     return randomIndexes
 
@@ -44,6 +45,7 @@ print("|||||||||||||||||||||||||||||||||")
 # Laço para explorar cada oceano
 for i in range(len(oceans)):
     validEntrys = []
+    print('')
     for i in range(len(oceans)):
         if not (i in oceansExploredIndex): # Se o índice do oceano já foi explorado, não será uma opção válida para ser selecionado e também não será exibido na tela
             print(f'{i + 1} - {oceans[i]}')
@@ -55,18 +57,18 @@ for i in range(len(oceans)):
 
     # Validação para verificar qual opção o usuário escolheu e inserir as demais validações
     if oceanSelectedIndex == 0:
-        atlanticOceanResidues = generateRandomIndexes(residueList, 10) # Chama a função random indexes para simular os resíduos encontrados pelo find-bot no respectivo oceano
+        atlanticOceanResidues = generateRandomIndexes(residueList) # Chama a função random indexes para simular os resíduos encontrados pelo find-bot no respectivo oceano
         findResidues(atlanticOceanResidues, oceanSelectedIndex) # Chama a função que processa os resíduos encontrados
     elif oceanSelectedIndex == 1:
-        indicOceanResidues = generateRandomIndexes(residueList, 10)
+        indicOceanResidues = generateRandomIndexes(residueList)
         findResidues(indicOceanResidues, oceanSelectedIndex)
     elif oceanSelectedIndex == 2:
-        pacificOceanResidues = generateRandomIndexes(residueList, 10)
+        pacificOceanResidues = generateRandomIndexes(residueList)
         findResidues(pacificOceanResidues, oceanSelectedIndex)
 
     # Verifica se o usuário deseja continuar explorando ou encerrar a aplicação
     if not (len(oceansExploredIndex) == 3):
-        wantToContinue = validateEntry([1, 2], "Deseja continuar explorando ou deseja encerrar?\n1 - Continuar Explorando\n2 - Encerrar\n")
+        wantToContinue = validateEntry([1, 2], "\nDeseja continuar explorando ou deseja encerrar?\n1 - Continuar Explorando\n2 - Encerrar\n")
         if wantToContinue == 2:
             break
 
