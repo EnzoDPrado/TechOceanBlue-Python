@@ -8,6 +8,7 @@ oceansExploredIndex = [] # Lista para armazenar os índices dos oceanos já expl
 
 # Função para validar a entrada do usuário
 def validateEntry(validEntrys, msg):
+    # Laço de repetição para ficar repetindo até o usuario inserir uma opção valida
     while True:
         userEntry = input(msg)
         if not userEntry.isnumeric():
@@ -15,6 +16,7 @@ def validateEntry(validEntrys, msg):
         else:
             userEntry = int(userEntry)
 
+        # Laço de repetição para verificar se o dado inserido pelo usuario é uma das opções validas
         for i in range(len(validEntrys)):
             if int(userEntry) == validEntrys[i]:
                 return userEntry
